@@ -6,7 +6,6 @@ toolchain go1.23.2
 
 require (
 	github.com/bredtape/retry v0.0.1
-	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
 	github.com/pkg/errors v0.9.1
 	github.com/prometheus/client_golang v1.20.5
 	google.golang.org/grpc v1.70.0

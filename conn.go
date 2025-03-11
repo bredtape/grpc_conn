@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/bredtape/retry"
-	grpc_prometheus "github.com/grpc-ecosystem/go-grpc-prometheus"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -18,17 +17,12 @@ var (
 	backoff = retry.Must(retry.NewExp(0.2, 1*time.Second, 5*time.Second))
 
 	DefaultOptions = Options{
-		RetryConnect: backoff,
-		DialOptions: []grpc.DialOption{
-			grpc.WithUnaryInterceptor(grpc_prometheus.UnaryClientInterceptor),
-			grpc.WithStreamInterceptor(grpc_prometheus.StreamClientInterceptor)}}
+		RetryConnect: backoff}
 
 	OptionsInsecure = Options{
 		RetryConnect: backoff,
 		DialOptions: []grpc.DialOption{
-			grpc.WithTransportCredentials(insecure.NewCredentials()),
-			grpc.WithUnaryInterceptor(grpc_prometheus.UnaryClientInterceptor),
-			grpc.WithStreamInterceptor(grpc_prometheus.StreamClientInterceptor)}}
+			grpc.WithTransportCredentials(insecure.NewCredentials())}}
 
 	ErrShutdown = errors.New("shutdown in progress")
 )
