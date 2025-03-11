@@ -1,14 +1,12 @@
 module github.com/bredtape/grpc_conn
 
-go 1.22
-
-toolchain go1.23.2
+go 1.24
 
 require (
 	github.com/bredtape/retry v0.0.1
 	github.com/pkg/errors v0.9.1
-	github.com/prometheus/client_golang v1.20.5
-	google.golang.org/grpc v1.70.0
+	github.com/prometheus/client_golang v1.21.1
+	google.golang.org/grpc v1.71.0
 )
 
 require (
@@ -18,9 +16,9 @@ require (
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
-	golang.org/x/net v0.34.0 // indirect
-	golang.org/x/sys v0.30.0 // indirect
-	golang.org/x/text v0.22.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20241202173237-19429a94021a // indirect
-	google.golang.org/protobuf v1.36.4 // indirect
+	golang.org/x/net v0.37.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/text v0.23.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250115164207-1a7da9e5054f // indirect
+	google.golang.org/protobuf v1.36.5 // indirect
 )
