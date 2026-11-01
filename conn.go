@@ -112,18 +112,18 @@ func (c *Conn) loop(ctx context.Context) {
 	labels := c.getMetricLabelValues()
 
 	// init labels
-	metric_grpc_conns.WithLabelValues(labels...)
-	metric_grpc_conns_err.WithLabelValues(labels...)
+	metricGrpcConns.WithLabelValues(labels...)
+	metricGrpcConnsErr.WithLabelValues(labels...)
 
 	attempt := 0
 	for {
-		metric_grpc_conns.WithLabelValues(labels...).Inc()
+		metricGrpcConns.WithLabelValues(labels...).Inc()
 		log.Debug("dialing")
 
 		conn, err := grpc.NewClient(c.address, c.options.DialOptions...)
 		if err != nil {
 			log.Error("failed to dial, will retry", "err", err)
-			metric_grpc_conns_err.WithLabelValues(labels...).Inc()
+			metricGrpcConnsErr.WithLabelValues(labels...).Inc()
 
 			select {
 			case <-ctx.Done():
@@ -154,7 +154,7 @@ func (c *Conn) watchConnectionState(ctx context.Context, conn *grpc.ClientConn) 
 		"name", c.name,
 		"address", c.address)
 
-	m := metric_conn_state.WithLabelValues(c.getMetricLabelValues()...)
+	m := metricConnState.WithLabelValues(c.getMetricLabelValues()...)
 	state := conn.GetState()
 	m.Set(float64(state))
 	log.Debug("connection state", "state", state)

@@ -5,7 +5,7 @@ type Pool struct {
 	conns map[string]*Conn
 }
 
-// new gRPC Pool of *Conn. Indexed only by 'name' (so that must be unique)
+// NewPool of *Conn. Indexed only by 'name' (so that must be unique)
 func NewPool(xs ...*Conn) (*Pool, error) {
 	p := &Pool{conns: map[string]*Conn{}}
 
