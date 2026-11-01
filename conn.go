@@ -133,7 +133,12 @@ func (c *Conn) loop(ctx context.Context) {
 				continue
 			}
 		}
-		defer conn.Close()
+		defer func() {
+			err := conn.Close()
+			if err != nil {
+				log.Error("failure when closing connection", "err", err)
+			}
+		}()
 
 		go c.watchConnectionState(ctx, conn)
 
